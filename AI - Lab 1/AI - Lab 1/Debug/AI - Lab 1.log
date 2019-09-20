@@ -1,0 +1,12 @@
+﻿  Character.cpp
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,116): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,116): warning C4244:         with
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,116): warning C4244:         [
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,116): warning C4244:             T=unsigned int
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,116): warning C4244:         ]
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,70): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,70): warning C4244:         with
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,70): warning C4244:         [
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,70): warning C4244:             T=unsigned int
+C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\AI - Lab 1\Character.cpp(13,70): warning C4244:         ]
+  AI - Lab 1.vcxproj -> C:\Users\Aoife Powders\Desktop\4th Year\AI\AI - Lab 1\Debug\AI - Lab 1.exe
