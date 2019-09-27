@@ -2,14 +2,17 @@
 #include <iostream>
 
 Game::Game() :
-	m_window{ sf::VideoMode{ 800U, 600U, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ 1000U, 1000U, 32U }, "SFML Game" },
 	m_exitGame{false} //when true game will exit
 {
 	setupSprite(); // load texture
-	char1.setUp(m_shipTexture, sf::Vector2f{ 10,100 }, sf::Vector2f{ 0.3f,0.3f }, 90.0f);
-	char2.setUp(m_sunTexture, sf::Vector2f{ 10,400 }, sf::Vector2f{ 0.3f,0.3f }, 0.0f);
-}
+	player.setUp(m_shipTexture, sf::Vector2f{ 400,500 }, sf::Vector2f{ 0.3f,0.3f });
+	seekAi.setUp(m_aiTexture, sf::Vector2f{ 750,400 },sf::Vector2f{ 0.3f,0.3f });
+	fleeAi.setUp(m_aiTexture, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f });
+	fleeAi.setUp(m_aiTexture, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f }); 
+	wanderAi.setUp(m_aiTexture, sf::Vector2f{ 500,500 }, sf::Vector2f{ 0.3f,0.3f });
 
+}
 
 Game::~Game()
 {
@@ -55,26 +58,41 @@ void Game::processKeys(sf::Event t_event)
 {
 	if (sf::Keyboard::Up == t_event.key.code)
 	{
-		char1.m_velocity += char1.m_acceleration;
+		player.m_acceleration += 0.01;
 	}
 	else if (sf::Keyboard::Down == t_event.key.code)
 	{
-		char1.m_velocity -= char1.m_acceleration;
+		player.m_acceleration -= 0.01;
+	}
+
+	if (sf::Keyboard::Right == t_event.key.code)
+	{
+		player.m_rotation += 1.0f;
+		player.m_rotationSpeed += 1.0f;
+	}
+	if (sf::Keyboard::Left == t_event.key.code)
+	{
+		player.m_rotation -= 1.0f;
+		player.m_rotationSpeed -= 1.0f;
 	}
 
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
 		m_exitGame = true;
 	}
-}
+} 
 
 void Game::update(sf::Time t_deltaTime)
 {
-	char1.move();
-	char2.move();
+	player.update();
+	player.boundary();
 
-	char1.boundary();
-	char2.boundary();
+	seekAi.seek(player.m_position);
+	wanderAi.wander();
+	fleeAi.flee(player.m_position);
+
+	fleeAi.boundary();
+	wanderAi.boundary();
 
 	if (m_exitGame)
 	{
@@ -85,22 +103,23 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-	char1.render(m_window);
-	char2.render(m_window);
+	player.render(m_window);
+	seekAi.render(m_window);
+	fleeAi.render(m_window);
+	wanderAi.render(m_window);
 	m_window.display();
 }
 
 void Game::setupSprite()
 {
-	if (!m_sunTexture.loadFromFile("ASSETS\\IMAGES\\sun.png"))
+	if (!m_aiTexture.loadFromFile("ASSETS\\IMAGES\\AiShip.png"))
 	{
 		// simple error message if previous call fails
 		std::cout << "problem loading logo" << std::endl;
 	}
 
-	if (!m_shipTexture.loadFromFile("ASSETS\\IMAGES\\ship.png"))
+	if (!m_shipTexture.loadFromFile("ASSETS\\IMAGES\\Ship.png"))
 	{
-		// simple error message if previous call fails
 		std::cout << "problem loading logo" << std::endl;
 	}
 }

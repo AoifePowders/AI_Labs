@@ -3,14 +3,24 @@
 class Character
 {
 public:
-	sf::Vector2f m_acceleration{ 0.1f, 0 };
-	sf::Vector2f m_velocity{ 1, 0 };
+	float m_acceleration = 0.0f;
+	sf::Vector2f m_velocity{ 0, 0 };
+	float m_rotation = 0.0f;
+	sf::Vector2f m_position{ 0.0f, 0.0f };
+	float maxSpeed = 10.0f;
 
-	void changeVelocity();
+	float m_radians;
+	sf::Vector2f m_direction;
+	float m_magnitude;
+	float m_rotationSpeed = 0.1;
+
+	void update();
 	void render(sf::RenderWindow& t_window);
-	void setUp(sf::Texture& t_texture, sf::Vector2f& t_position, sf::Vector2f& t_scale, float t_rotation);
+	void setUp(sf::Texture& t_texture, sf::Vector2f& t_position, sf::Vector2f& t_scale);
 	void move();
 	void boundary();
+	void rotate();
+
 private:
 	sf::Sprite characterSprite;
 };

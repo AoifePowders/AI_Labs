@@ -2,6 +2,7 @@
 #define GAME_HPP
 #include <SFML/Graphics.hpp>
 #include "Character.h"
+#include "AI.h"
 
 class Game
 {
@@ -22,12 +23,14 @@ private:
 
 	sf::RenderWindow m_window; // main SFML window
 
-	sf::Texture m_sunTexture;
+	sf::Texture m_aiTexture;
 	sf::Texture m_shipTexture;
 	bool m_exitGame; // control exiting game
 
-	Character char1;
-	Character char2;
+	Character player;
+	AI seekAi;
+	AI fleeAi;
+	AI wanderAi;
 };
 
 #endif // !GAME_HPP
