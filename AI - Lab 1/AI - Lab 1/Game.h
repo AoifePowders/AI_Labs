@@ -31,6 +31,7 @@ private:
 	AI seekAi;
 	AI fleeAi;
 	AI wanderAi;
+	AI arriveAi;
 };
 
 #endif // !GAME_HPP

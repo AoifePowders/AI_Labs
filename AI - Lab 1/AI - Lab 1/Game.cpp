@@ -11,6 +11,7 @@ Game::Game() :
 	fleeAi.setUp(m_aiTexture, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f });
 	fleeAi.setUp(m_aiTexture, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f }); 
 	wanderAi.setUp(m_aiTexture, sf::Vector2f{ 500,500 }, sf::Vector2f{ 0.3f,0.3f });
+	arriveAi.setUp(m_aiTexture, sf::Vector2f{ 500,500 }, sf::Vector2f{ 0.3f,0.3f });
 
 }
 
@@ -62,6 +63,10 @@ void Game::processKeys(sf::Event t_event)
 	}
 	else if (sf::Keyboard::Down == t_event.key.code)
 	{
+		if (player.m_acceleration < 0)
+		{
+			player.m_acceleration = 0.0;
+		}
 		player.m_acceleration -= 0.01;
 	}
 
@@ -90,6 +95,7 @@ void Game::update(sf::Time t_deltaTime)
 	seekAi.seek(player.m_position);
 	wanderAi.wander();
 	fleeAi.flee(player.m_position);
+	arriveAi.arrive(player.m_position);
 
 	fleeAi.boundary();
 	wanderAi.boundary();
@@ -107,6 +113,7 @@ void Game::render()
 	seekAi.render(m_window);
 	fleeAi.render(m_window);
 	wanderAi.render(m_window);
+	arriveAi.render(m_window);
 	m_window.display();
 }
 
