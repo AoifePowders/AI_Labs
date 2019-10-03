@@ -14,35 +14,37 @@ public:
 	void render(sf::RenderWindow& t_window);
 	void boundary();
 
+	//AI behaviour
 	void wander();
 	void seek(sf::Vector2f& t_playerPosition);
 	void arrive(sf::Vector2f& t_playerPosition);
 	void flee(sf::Vector2f& t_playerPosition);
 	void pursue(sf::Vector2f& t_playerPosition);
 
-	int timer = 0;
-
-	float getNewOrientation();
-
+private:
+	float getNewOrientation(sf::Vector2f t_vector);
 	float getMagnitude(sf::Vector2f& t_vector);
 	sf::Vector2f Normalize(sf::Vector2f t_vector);
 
+private:
 	sf::Vector2f m_position;
 	float m_orientation = 0.0f;
 	sf::Vector2f m_velocity{ 1, 1 };
 	float m_rotation = -43.0f;
 	float maxRotation = 360;
-	sf::Vector2f m_maxVelocity{ 10,10 };
-	sf::Vector2f m_desiredVelocity{ 0,0 };
-	sf::Vector2f m_steering{ 0,0 };
-	float m_maxForce = 10;
+	sf::Vector2f maxSpeed{ 2,2 };
 
+	int m_timer = 0;
 	float randValue;
 
-	sf::Vector2f maxSpeed{ 2,2 };
+	float timeToTarget = 0.25;
+	float radius = 100;
 
 private:
 	sf::Sprite m_aiSprite;
 	sf::Texture m_aiText;
+
+	sf::VertexArray FOV;
+	sf::Transform transform;
 };
 

@@ -21,6 +21,9 @@ public:
 	void boundary();
 	void rotate();
 
+	sf::CircleShape m_circle;
+	float m_radius = 100;
+
 private:
 	sf::Sprite characterSprite;
 };

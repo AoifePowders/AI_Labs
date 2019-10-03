@@ -16,10 +16,22 @@ void AI::setUp(sf::Texture& t_aiTexture, sf::Vector2f& t_position, sf::Vector2f&
 	m_aiSprite.setTexture(t_aiTexture);
 	m_aiSprite.setOrigin(m_aiSprite.getTexture()->getSize().x / 2, m_aiSprite.getTexture()->getSize().y / 2);
 	m_aiSprite.setScale(t_scale);
+
+	FOV = sf::VertexArray(sf::Triangles, 3);
+	// define the position of the triangle's points
+	FOV[0].position = sf::Vector2f(m_position);
+	FOV[1].position = sf::Vector2f(100.f, 10.f);
+	FOV[2].position = sf::Vector2f(100.f, 100.f);
+
+	// define the color of the triangle's points
+	FOV[0].color = sf::Color(255,0,0,100);
+	FOV[1].color = sf::Color(255, 0, 0, 100);
+	FOV[2].color = sf::Color(255, 0, 0, 100);
 }
 
 void AI::render(sf::RenderWindow& t_window)
 {
+	t_window.draw(FOV);
 	t_window.draw(m_aiSprite);
 }
 
@@ -53,12 +65,12 @@ void AI::boundary()
 void AI::wander()
 {
 	srand(time(0));
-	timer++;
+	m_timer++;
 
-	if (timer > 50)
+	if (m_timer > 50)
 	{
 		randValue = (rand() % 2) + 1;
-		timer = 0;
+		m_timer = 0;
 	}
 
 	if (randValue == 1)
@@ -71,7 +83,7 @@ void AI::wander()
 
 	sf::Vector2f normalizedVelocity = { Normalize(m_velocity) };
 
-	m_orientation = getNewOrientation();
+	m_orientation = getNewOrientation(m_velocity);
 	m_orientation = m_orientation + maxRotation * randValue;
 	normalizedVelocity.x = -sin(m_orientation) * maxSpeed.x;
 	normalizedVelocity.y = cos(m_orientation) * maxSpeed.y;
@@ -81,50 +93,76 @@ void AI::wander()
 
 	float degrees = m_orientation * (180 / 3.14159);
 	m_aiSprite.setRotation(degrees + 90);
+
+	//// define the position of the triangle's points
+	FOV[0].position = sf::Vector2f(m_position);
+	FOV[1].position = sf::Vector2f(m_position.x + 100, m_position.y + 100);
+	FOV[2].position = sf::Vector2f(m_position.x + 100, m_position.y - 100);
+
+	FOV[1].position = sf::Vector2f(FOV[1].position.x, FOV[1].position.y + m_orientation);
+	FOV[2].position = sf::Vector2f(FOV[2].position.x, FOV[2].position.y - m_orientation);
+
 }
 
 //AI that seeks out the player
 void AI::seek(sf::Vector2f& t_playerPosition)
 {
 	m_velocity = t_playerPosition - m_position;
-	m_orientation = getNewOrientation();
+	m_orientation = getNewOrientation(m_velocity);
 
 	sf::Vector2f normalizedVelocity = { m_velocity.x / getMagnitude(m_velocity), m_velocity.y / getMagnitude(m_velocity) };
-	normalizedVelocity.x = normalizedVelocity.x * maxSpeed.x;
-	normalizedVelocity.y = normalizedVelocity.y * maxSpeed.y;
-
-	m_position += normalizedVelocity;
+	m_position.x += normalizedVelocity.x * maxSpeed.x;
+	m_position.y += normalizedVelocity.y * maxSpeed.y;
 	m_aiSprite.setPosition(m_position);
 
+	//makes ai look in direction its moving
 	float degrees = m_orientation * (180 / 3.14159);
 	m_aiSprite.setRotation(degrees + 90);
+
+	//// define the position of the triangle's points
+	FOV[0].position = sf::Vector2f(m_position);
+	FOV[1].position = sf::Vector2f(m_position.x + 100, m_position.y + 100);
+	FOV[2].position = sf::Vector2f(m_position.x + 100, m_position.y - 100);
 }
 
 //AI that arrives at the player
 void AI::arrive(sf::Vector2f& t_playerPosition)
 {
-	m_velocity.x = t_playerPosition.x - m_position.x;
-	m_velocity.y = t_playerPosition.y - m_position.y;
-
-	float hypot = sqrt(m_velocity.x * m_velocity.x + m_velocity.y * m_velocity.y);
-	m_velocity.x /= hypot;
-	m_velocity.y /= hypot;
-
-	m_position.x += m_velocity.x * m_velocity.x;
-	m_position.y += m_velocity.y * m_velocity.y;
+	m_velocity = t_playerPosition - m_position;
+	m_orientation = getNewOrientation(m_velocity);
+	if (getMagnitude(m_velocity) < radius)
+	{
+		m_velocity.x *= 0.5;
+		m_velocity.y *= 0.5;
+	}
+	else if (getMagnitude(m_velocity) > maxSpeed.x)
+	{
+		sf::Vector2f normalizedVelocity = { m_velocity.x / getMagnitude(m_velocity), m_velocity.y / getMagnitude(m_velocity) };
+		normalizedVelocity.x = normalizedVelocity.x * maxSpeed.x;
+		normalizedVelocity.y = normalizedVelocity.y * maxSpeed.y;
+		m_position += normalizedVelocity;
+	}
+	
 	m_aiSprite.setPosition(m_position);
 
+	//makes ai look in direction its moving
 	float degrees = m_orientation * (180 / 3.14159);
 	m_aiSprite.setRotation(degrees + 90);
+
+	//// define the position of the triangle's points
+	FOV[0].position = sf::Vector2f(m_position);
+	FOV[1].position = sf::Vector2f(m_position.x + 100, m_position.y + 100);
+	FOV[2].position = sf::Vector2f(m_position.x + 100, m_position.y - 100);
+
 }
 
 //AI that flees from the player
 void AI::flee(sf::Vector2f& t_playerPosition)
 {
 	m_velocity = m_position - t_playerPosition;
-	m_orientation = getNewOrientation();
+	m_orientation = getNewOrientation(m_velocity);
 
-	sf::Vector2f normalizedVelocity = { m_velocity.x / getMagnitude(m_velocity), m_velocity.y / getMagnitude(m_velocity) };
+	sf::Vector2f normalizedVelocity = { m_velocity.x / getMagnitude(m_velocity), m_velocity.y / getMagnitude(m_velocity) }; 
 	normalizedVelocity.x = normalizedVelocity.x * maxSpeed.x;
 	normalizedVelocity.y = normalizedVelocity.y * maxSpeed.y;
 
@@ -133,6 +171,12 @@ void AI::flee(sf::Vector2f& t_playerPosition)
 
 	float degrees = m_orientation * (180 / 3.14159);
 	m_aiSprite.setRotation(degrees + 90);
+
+	//// define the position of the triangle's points
+	FOV[0].position = sf::Vector2f(m_position);
+	FOV[1].position = sf::Vector2f(m_position.x + 100, m_position.y + 100);
+	FOV[2].position = sf::Vector2f(m_position.x + 100, m_position.y - 100);
+
 }
 
 void AI::pursue(sf::Vector2f& t_playerPosition)
@@ -140,9 +184,9 @@ void AI::pursue(sf::Vector2f& t_playerPosition)
 }
 
 //returns the orientation of the AI
-float AI::getNewOrientation()
+float AI::getNewOrientation(sf::Vector2f t_vector)
 {
-	return atan2(m_velocity.y,m_velocity.x);
+	return atan2(t_vector.y, t_vector.x);
 }
 
 //finds the magnitude of the AI

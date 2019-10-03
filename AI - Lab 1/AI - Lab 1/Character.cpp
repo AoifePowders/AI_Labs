@@ -14,6 +14,11 @@ void Character::setUp(sf::Texture &t_texture, sf::Vector2f& t_position, sf::Vect
 	characterSprite.setScale(t_scale);
 	characterSprite.setTexture(t_texture);
 	characterSprite.setOrigin(characterSprite.getTexture()->getSize().x / 2,characterSprite.getTexture()->getSize().y / 2);
+
+	m_circle.setFillColor(sf::Color::Red);
+	m_circle.setPosition(m_position);
+	m_circle.setRadius(m_radius);
+	m_circle.setOrigin(m_circle.getGlobalBounds().width / 2, m_circle.getGlobalBounds().height / 2);
 }
 
 //move by changing the position with velocity
@@ -37,6 +42,8 @@ void Character::move()
 	m_velocity += m_direction * m_acceleration;
 	m_position += m_velocity;
 	characterSprite.setPosition(m_position);
+
+	m_circle.setPosition(m_position);
 }
 
 //wrap around

@@ -1,18 +1,14 @@
-﻿  AI.cpp
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:         with
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:         [
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:             T=unsigned int
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:         ]
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:         with
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:         [
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:             T=unsigned int
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:         ]
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(55,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(60,28): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(82,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(99,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(117,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(134,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+﻿  Character.cpp
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.h(15,29): warning C4305:  'initializing': truncation from 'double' to 'float'
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,116): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,116): warning C4244:         with
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,116): warning C4244:         [
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,116): warning C4244:             T=unsigned int
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,116): warning C4244:         ]
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,70): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,70): warning C4244:         with
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,70): warning C4244:         [
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,70): warning C4244:             T=unsigned int
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(16,70): warning C4244:         ]
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.cpp(27,37): warning C4244:  '=': conversion from 'double' to 'float', possible loss of data
   AI - Lab 1.vcxproj -> C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\Debug\AI - Lab 1.exe

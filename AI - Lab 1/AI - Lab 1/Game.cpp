@@ -11,7 +11,7 @@ Game::Game() :
 	fleeAi.setUp(m_aiTexture, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f });
 	fleeAi.setUp(m_aiTexture, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f }); 
 	wanderAi.setUp(m_aiTexture, sf::Vector2f{ 500,500 }, sf::Vector2f{ 0.3f,0.3f });
-	arriveAi.setUp(m_aiTexture, sf::Vector2f{ 500,500 }, sf::Vector2f{ 0.3f,0.3f });
+	arriveAi.setUp(m_aiTexture, sf::Vector2f{ 100,500 }, sf::Vector2f{ 0.3f,0.3f });
 
 }
 
