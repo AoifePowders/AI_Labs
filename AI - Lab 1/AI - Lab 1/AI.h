@@ -10,7 +10,7 @@ public:
 	AI();
 	~AI();
 
-	void setUp(sf::Texture& t_shipTexture, sf::Vector2f& t_position, sf::Vector2f& t_scale);
+	void setUp(sf::Texture& t_shipTexture, sf::Font& t_font,sf::Vector2f& t_position, sf::Vector2f& t_scale, sf::String t_name);
 	void render(sf::RenderWindow& t_window);
 	void boundary();
 
@@ -19,7 +19,7 @@ public:
 	void seek(sf::Vector2f& t_playerPosition);
 	void arrive(sf::Vector2f& t_playerPosition);
 	void flee(sf::Vector2f& t_playerPosition);
-	void pursue(sf::Vector2f& t_playerPosition);
+	void pursue(sf::Vector2f& t_playerPosition, sf::Vector2f& t_playerVelocity);
 
 private:
 	float getNewOrientation(sf::Vector2f t_vector);
@@ -40,11 +40,17 @@ private:
 	float timeToTarget = 0.25;
 	float radius = 100;
 
+	sf::Vector2f newTarget;
+	float predictedDistance = 40.0f;
+	float prediction = 40.0f;
+
 private:
 	sf::Sprite m_aiSprite;
 	sf::Texture m_aiText;
 
 	sf::VertexArray FOV;
 	sf::Transform transform;
+
+	sf::Text name;
 };
 

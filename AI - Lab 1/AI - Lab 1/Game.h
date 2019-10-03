@@ -25,6 +25,9 @@ private:
 
 	sf::Texture m_aiTexture;
 	sf::Texture m_shipTexture;
+
+	sf::Font m_font;
+
 	bool m_exitGame; // control exiting game
 
 	Character player;
@@ -32,6 +35,7 @@ private:
 	AI fleeAi;
 	AI wanderAi;
 	AI arriveAi;
+	AI pursueAi;
 };
 
 #endif // !GAME_HPP

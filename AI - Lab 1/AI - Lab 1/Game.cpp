@@ -7,11 +7,11 @@ Game::Game() :
 {
 	setupSprite(); // load texture
 	player.setUp(m_shipTexture, sf::Vector2f{ 400,500 }, sf::Vector2f{ 0.3f,0.3f });
-	seekAi.setUp(m_aiTexture, sf::Vector2f{ 750,400 },sf::Vector2f{ 0.3f,0.3f });
-	fleeAi.setUp(m_aiTexture, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f });
-	fleeAi.setUp(m_aiTexture, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f }); 
-	wanderAi.setUp(m_aiTexture, sf::Vector2f{ 500,500 }, sf::Vector2f{ 0.3f,0.3f });
-	arriveAi.setUp(m_aiTexture, sf::Vector2f{ 100,500 }, sf::Vector2f{ 0.3f,0.3f });
+	seekAi.setUp(m_aiTexture, m_font, sf::Vector2f{ 750,400 },sf::Vector2f{ 0.3f,0.3f }, "SEEK");
+	fleeAi.setUp(m_aiTexture, m_font, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f }, "FLEE");
+	wanderAi.setUp(m_aiTexture, m_font,sf::Vector2f{ 500,500 }, sf::Vector2f{ 0.3f,0.3f }, "WANDER");
+	arriveAi.setUp(m_aiTexture, m_font, sf::Vector2f{ 100,500 }, sf::Vector2f{ 0.3f,0.3f }, "ARRIVE");
+	pursueAi.setUp(m_aiTexture, m_font, sf::Vector2f{ 100,500 }, sf::Vector2f{ 0.3f,0.3f }, "PURSUE");
 
 }
 
@@ -96,6 +96,7 @@ void Game::update(sf::Time t_deltaTime)
 	wanderAi.wander();
 	fleeAi.flee(player.m_position);
 	arriveAi.arrive(player.m_position);
+	pursueAi.pursue(player.m_position, player.m_velocity);
 
 	fleeAi.boundary();
 	wanderAi.boundary();
@@ -114,6 +115,7 @@ void Game::render()
 	fleeAi.render(m_window);
 	wanderAi.render(m_window);
 	arriveAi.render(m_window);
+	pursueAi.render(m_window);
 	m_window.display();
 }
 
@@ -128,5 +130,10 @@ void Game::setupSprite()
 	if (!m_shipTexture.loadFromFile("ASSETS\\IMAGES\\Ship.png"))
 	{
 		std::cout << "problem loading logo" << std::endl;
+	}
+
+	if (!m_font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	{
+		std::cout << "problem loading font" << std::endl;
 	}
 }
