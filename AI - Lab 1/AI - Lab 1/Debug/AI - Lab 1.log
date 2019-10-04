@@ -1,31 +1,25 @@
 ﻿  AI.cpp
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:         with
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:         [
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:             T=unsigned int
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:         ]
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:         with
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:         [
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:             T=unsigned int
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:         ]
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(74,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(79,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(101,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(125,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(153,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(153,32): warning C4244:         with
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(153,32): warning C4244:         [
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(153,32): warning C4244:             T=float
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(153,32): warning C4244:         ]
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(154,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(154,32): warning C4244:         with
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(154,32): warning C4244:         [
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(154,32): warning C4244:             T=float
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(154,32): warning C4244:         ]
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(164,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:         with
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:         [
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:             T=unsigned int
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,102): warning C4244:         ]
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:  'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:         with
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:         [
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:             T=unsigned int
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(17,60): warning C4244:         ]
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(70,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(76,28): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(98,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(119,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(156,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+  Game.cpp
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(179,16): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.h(15,29): warning C4305:  'initializing': truncation from 'double' to 'float'
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Game.cpp(63,32): warning C4305:  '+=': truncation from 'double' to 'float'
   main.cpp
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\AI.cpp(189,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Game.cpp(71,32): warning C4305:  '-=': truncation from 'double' to 'float'
   Generating Code...
-C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\AI - Lab 1\Character.h(15,29): warning C4305: 'initializing': truncation from 'double' to 'float'
-  AI - Lab 1.vcxproj -> C:\Users\Aoife\Desktop\AI_Labs\AI - Lab 1\Debug\AI - Lab 1.exe
+C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\AI - Lab 1\Character.h(15,29): warning C4305:  'initializing': truncation from 'double' to 'float'
+  AI - Lab 1.vcxproj -> C:\Users\Aoife Powders\Desktop\4th Year\AI_Labs\AI - Lab 1\Debug\AI - Lab 1.exe

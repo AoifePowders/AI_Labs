@@ -23,23 +23,18 @@ void AI::setUp(sf::Texture& t_aiTexture, sf::Font& t_font, sf::Vector2f& t_posit
 	name.setPosition(m_position);
 	name.setString(t_name);
 
-	FOV = sf::VertexArray(sf::Triangles, 3);
-	// define the position of the triangle's points
-	FOV[0].position = sf::Vector2f(m_position);
-	FOV[1].position = sf::Vector2f(100.f, 10.f);
-	FOV[2].position = sf::Vector2f(100.f, 100.f);
-
-	// define the color of the triangle's points
-	FOV[0].color = sf::Color(255,0,0,100);
-	FOV[1].color = sf::Color(255, 0, 0, 100);
-	FOV[2].color = sf::Color(255, 0, 0, 100);
+	triangle.setPointCount(3);
+	triangle.setRadius(100);
+	triangle.setPosition(m_position);
+	triangle.setFillColor(sf::Color(255, 0, 0, 100));
+	triangle.setOrigin(triangle.getPoint(1));
 }
 
 void AI::render(sf::RenderWindow& t_window)
 {
-	t_window.draw(FOV);
 	t_window.draw(m_aiSprite);
 	t_window.draw(name);
+	t_window.draw(triangle);
 }
 
 //screen wrapping
@@ -69,9 +64,11 @@ void AI::boundary()
 }
 
 //AI that randomly moves around
-void AI::wander()
+void AI::wander(sf::Vector2f& t_playerPosition)
 {
+	//seed for random number generator
 	srand(time(0));
+	//timer that tells the ai when to switch direction
 	m_timer++;
 
 	if (m_timer > 50)
@@ -88,26 +85,23 @@ void AI::wander()
 		randValue = -1;
 	}
 
+	//move and rotate 
 	sf::Vector2f normalizedVelocity = { Normalize(m_velocity) };
-
-	m_orientation = getNewOrientation(m_velocity);
+	m_orientation = getNewOrientation(normalizedVelocity);
 	m_orientation = m_orientation + maxRotation * randValue;
-	normalizedVelocity.x = -sin(m_orientation) * maxSpeed.x;
-	normalizedVelocity.y = cos(m_orientation) * maxSpeed.y;
+	normalizedVelocity.x = -sin(m_orientation) * maxSpeed;
+	normalizedVelocity.y = cos(m_orientation) * maxSpeed;
 
 	m_position += normalizedVelocity;
 	m_aiSprite.setPosition(m_position);
 
 	float degrees = m_orientation * (180 / 3.14159);
-	m_aiSprite.setRotation(degrees + 90);
+	m_aiSprite.setRotation(degrees + 180);
 
-	//// define the position of the triangle's points
-	FOV[0].position = sf::Vector2f(m_position);
-	FOV[1].position = sf::Vector2f(m_position.x + 100, m_position.y + 100);
-	FOV[2].position = sf::Vector2f(m_position.x + 100, m_position.y - 100);
+	triangle.setRotation(degrees + 250);
+	playerDetection(t_playerPosition);
 
 	name.setPosition(m_position);
-
 }
 
 //AI that seeks out the player
@@ -117,42 +111,40 @@ void AI::seek(sf::Vector2f& t_playerPosition)
 	m_orientation = getNewOrientation(m_velocity);
 
 	sf::Vector2f normalizedVelocity = { m_velocity.x / getMagnitude(m_velocity), m_velocity.y / getMagnitude(m_velocity) };
-	m_position.x += normalizedVelocity.x * maxSpeed.x;
-	m_position.y += normalizedVelocity.y * maxSpeed.y;
+	m_position.x += normalizedVelocity.x * maxSpeed;
+	m_position.y += normalizedVelocity.y * maxSpeed;
 	m_aiSprite.setPosition(m_position);
 
 	//makes ai look in direction its moving
 	float degrees = m_orientation * (180 / 3.14159);
 	m_aiSprite.setRotation(degrees + 90);
 
-	//// define the position of the triangle's points
-	FOV[0].position = sf::Vector2f(m_position);
-	FOV[1].position = sf::Vector2f(m_position.x + 100, m_position.y + 100);
-	FOV[2].position = sf::Vector2f(m_position.x + 100, m_position.y - 100);
+	triangle.setRotation(degrees + 160);
+	playerDetection(t_playerPosition);
 
 	name.setPosition(m_position);
 }
 
 //AI that arrives at the player
-void AI::arrive(sf::Vector2f& t_playerPosition)
+void AI::arrive(sf::Vector2f& t_playerPosition, float t_maxSpeed)
 {
 	m_velocity = t_playerPosition - m_position;
 	m_orientation = getNewOrientation(m_velocity);
-	if (getMagnitude(m_velocity) < radius)
+
+	//length of velocity is less than radius
+	if (getMagnitude(m_velocity) > radius)
 	{
-	}
-	else if (getMagnitude(m_velocity) > maxSpeed.x)
-	{
+		//the ai is within the radius of the player circle
+		//and should slow down
 		m_velocity.x = m_velocity.x / timeToTarget;
 		m_velocity.y = m_velocity.y / timeToTarget;
 
-		if (getMagnitude(m_velocity) > maxSpeed.x)
+		if (getMagnitude(m_velocity) > t_maxSpeed)
 		{
 			m_velocity.x = (m_velocity.x / getMagnitude(m_velocity));
 			m_velocity.y = (m_velocity.y / getMagnitude(m_velocity));
-			m_velocity.x = m_velocity.x * 0.5;
-			m_velocity.y = m_velocity.y * 0.5;
-
+			m_velocity.x = m_velocity.x * t_maxSpeed;
+			m_velocity.y = m_velocity.y * t_maxSpeed;
 		}
 
 		m_position += m_velocity;
@@ -164,10 +156,8 @@ void AI::arrive(sf::Vector2f& t_playerPosition)
 	float degrees = m_orientation * (180 / 3.14159);
 	m_aiSprite.setRotation(degrees + 90);
 
-	//// define the position of the triangle's points
-	FOV[0].position = sf::Vector2f(m_position);
-	FOV[1].position = sf::Vector2f(m_position.x + 100, m_position.y + 100);
-	FOV[2].position = sf::Vector2f(m_position.x + 100, m_position.y - 100);
+	triangle.setRotation(degrees + 160);
+	playerDetection(t_playerPosition);
 
 	name.setPosition(m_position);
 
@@ -180,8 +170,8 @@ void AI::flee(sf::Vector2f& t_playerPosition)
 	m_orientation = getNewOrientation(m_velocity);
 
 	sf::Vector2f normalizedVelocity = { m_velocity.x / getMagnitude(m_velocity), m_velocity.y / getMagnitude(m_velocity) }; 
-	normalizedVelocity.x = normalizedVelocity.x * maxSpeed.x;
-	normalizedVelocity.y = normalizedVelocity.y * maxSpeed.y;
+	normalizedVelocity.x = normalizedVelocity.x * maxSpeed;
+	normalizedVelocity.y = normalizedVelocity.y * maxSpeed;
 
 	m_position += normalizedVelocity;
 	m_aiSprite.setPosition(m_position);
@@ -189,33 +179,25 @@ void AI::flee(sf::Vector2f& t_playerPosition)
 	float degrees = m_orientation * (180 / 3.14159);
 	m_aiSprite.setRotation(degrees + 90);
 
-	//// define the position of the triangle's points
-	FOV[0].position = sf::Vector2f(m_position);
-	FOV[1].position = sf::Vector2f(m_position.x + 100, m_position.y + 100);
-	FOV[2].position = sf::Vector2f(m_position.x + 100, m_position.y - 100);
-
 	name.setPosition(m_position);
-
 }
 
+//finds a point in front of the player and moves to that
 void AI::pursue(sf::Vector2f& t_playerPosition, sf::Vector2f& t_playerVelocity)
 {
-	m_velocity = t_playerPosition - m_position;
-	float distance = sqrt((m_velocity.x * m_velocity.x) + (m_velocity.y * m_velocity.y));
+	sf::Vector2f direction = t_playerPosition - m_position;
+	float distance = getMagnitude(direction);
 
-	if (getMagnitude(m_velocity) <= distance / prediction)
+	if (getMagnitude(m_velocity) <= distance / maxTimePrediction)
 	{
-		predictedDistance = prediction;
+		timePrediction = maxTimePrediction;
 	}
 	else{
-		predictedDistance = distance / getMagnitude(m_velocity);
+		timePrediction = distance / getMagnitude(m_velocity);
 	}
-	newTarget = t_playerPosition + t_playerVelocity * predictedDistance;
+	newTarget = t_playerPosition + t_playerVelocity * timePrediction;
 	seek(newTarget);
 
-	FOV[0].position = sf::Vector2f(m_position);
-	FOV[1].position = sf::Vector2f(m_position.x + 100, m_position.y + 100);
-	FOV[2].position = sf::Vector2f(m_position.x + 100, m_position.y - 100);
 }
 
 //returns the orientation of the AI
@@ -237,4 +219,17 @@ sf::Vector2f AI::Normalize(sf::Vector2f t_vector)
 	sf::Vector2f normalizedVector{ 0,0 };
 	normalizedVector = t_vector / (sqrt((t_vector.x * t_vector.x) + (t_vector.y * t_vector.y)));
 	return normalizedVector;
+}
+
+void AI::playerDetection(sf::Vector2f& t_playerPosition)
+{
+	triangle.setPosition(m_position.x, m_position.y);
+	if (triangle.getGlobalBounds().contains(t_playerPosition))
+	{
+		triangle.setFillColor(sf::Color(0, 255, 0, 100));
+	}
+	else
+	{
+		triangle.setFillColor(sf::Color(255, 0, 0, 100));
+	}
 }

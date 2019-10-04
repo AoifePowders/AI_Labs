@@ -32,9 +32,10 @@ private:
 
 	Character player;
 	AI seekAi;
-	AI fleeAi;
+	//AI fleeAi;
 	AI wanderAi;
-	AI arriveAi;
+	AI arriveAiSlow;
+	AI arriveAiFast;
 	AI pursueAi;
 };
 

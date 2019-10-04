@@ -8,9 +8,10 @@ Game::Game() :
 	setupSprite(); // load texture
 	player.setUp(m_shipTexture, sf::Vector2f{ 400,500 }, sf::Vector2f{ 0.3f,0.3f });
 	seekAi.setUp(m_aiTexture, m_font, sf::Vector2f{ 750,400 },sf::Vector2f{ 0.3f,0.3f }, "SEEK");
-	fleeAi.setUp(m_aiTexture, m_font, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f }, "FLEE");
+	//fleeAi.setUp(m_aiTexture, m_font, sf::Vector2f{ 600,400 }, sf::Vector2f{ 0.3f,0.3f }, "FLEE");
 	wanderAi.setUp(m_aiTexture, m_font,sf::Vector2f{ 500,500 }, sf::Vector2f{ 0.3f,0.3f }, "WANDER");
-	arriveAi.setUp(m_aiTexture, m_font, sf::Vector2f{ 100,500 }, sf::Vector2f{ 0.3f,0.3f }, "ARRIVE");
+	arriveAiSlow.setUp(m_aiTexture, m_font, sf::Vector2f{ 100,500 }, sf::Vector2f{ 0.3f,0.3f }, "ARRIVE SLOW");
+	arriveAiFast.setUp(m_aiTexture, m_font, sf::Vector2f{ 100,500 }, sf::Vector2f{ 0.3f,0.3f }, "ARRIVE FAST");
 	pursueAi.setUp(m_aiTexture, m_font, sf::Vector2f{ 100,500 }, sf::Vector2f{ 0.3f,0.3f }, "PURSUE");
 
 }
@@ -93,12 +94,13 @@ void Game::update(sf::Time t_deltaTime)
 	player.boundary();
 
 	seekAi.seek(player.m_position);
-	wanderAi.wander();
-	fleeAi.flee(player.m_position);
-	arriveAi.arrive(player.m_position);
+	wanderAi.wander(player.m_position);
+	//fleeAi.flee(player.m_position);
+	arriveAiSlow.arrive(player.m_position, 2);
+	arriveAiFast.arrive(player.m_position, 6);
 	pursueAi.pursue(player.m_position, player.m_velocity);
 
-	fleeAi.boundary();
+	//fleeAi.boundary();
 	wanderAi.boundary();
 
 	if (m_exitGame)
@@ -112,9 +114,10 @@ void Game::render()
 	m_window.clear(sf::Color::White);
 	player.render(m_window);
 	seekAi.render(m_window);
-	fleeAi.render(m_window);
+	//fleeAi.render(m_window);
 	wanderAi.render(m_window);
-	arriveAi.render(m_window);
+	arriveAiSlow.render(m_window);
+	arriveAiFast.render(m_window);
 	pursueAi.render(m_window);
 	m_window.display();
 }
